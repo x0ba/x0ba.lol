@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://localhost:8080/">
+  <title>Daniel&#39;s notes on life.</title>
+  <subtitle>I yap here.</subtitle>
+  <link href="http://localhost:8080/feed.xml" rel="self" />
+  <link href="http://localhost:8080/" />
+  
+  <updated>2024-02-28T04:33:25Z</updated>
+  <id>http://localhost:8080/</id>
+  <author>
+    <name>Daniel Xu</name>
+    <email>x0ba@tuta.io</email>
+  </author>
+</feed>

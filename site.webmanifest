@@ -1,0 +1,26 @@
+{
+  "name": "Daniel Xu - tired high school student",
+  "short_name": "Daniel Xu",
+  "start_url": "http://localhost:8080",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#DD4462",
+  "background_color": "#FBFBFB",
+  "display": "standalone"
+}

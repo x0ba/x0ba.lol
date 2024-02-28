@@ -1,0 +1,9 @@
+/* TEAM */
+Developer: Daniel Xu
+Contact: x0ba@tuta.io
+Site: https://x0ba.lol
+
+Find me on: https://social.lol/@x0ba
+
+/* SITE */
+Doctype: HTML5

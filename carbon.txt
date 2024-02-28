@@ -1,0 +1,5 @@
+[upstream]
+providers = [{ domain = 'netlify.com', service = 'cdn' }]
+
+[org]
+credentials = []
