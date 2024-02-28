@@ -48,6 +48,7 @@ const {slugifyString} = require('./config/utils/index.js');
 const yaml = require('js-yaml');
 
 module.exports = eleventyConfig => {
+  eleventyConfig.addPassthroughCopy('src/CNAME');
   // 	--------------------- Custom Watch Targets -----------------------
   eleventyConfig.addWatchTarget('./src/assets');
   eleventyConfig.addWatchTarget('./utils/*.js');
