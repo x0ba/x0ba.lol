@@ -12,7 +12,7 @@
     <!-- title -->
     <title>
       
-        About
+        Blog
       
     </title>
 
@@ -47,7 +47,7 @@
     <!--  inline blogpost schema  -->
     
 
-    <link rel="stylesheet" href="/assets/css/global.css?0499-54ac-a484" />
+    <link rel="stylesheet" href="/assets/css/global.css?3b08-41ef-29b1" />
 
     <!-- preloads -->
     <link
@@ -71,6 +71,9 @@
     <!-- defered js  -->
 
     
+      <!-- masonry fallback, if true in frontmatter -->
+      <script src="/assets/scripts/masonry.js?3b08-41ef-29b1" defer></script>
+    
 
     
 
@@ -78,17 +81,17 @@
 
     
       <!-- easteregg js, if true in meta -->
-      <script src="/assets/scripts/easteregg.js?0499-54ac-a484" defer></script>
+      <script src="/assets/scripts/easteregg.js?3b08-41ef-29b1" defer></script>
     
 
     <!-- everything else: meta tags, icons, open graph etc.  -->
-    <base href="/about/" />
+    <base href="/blog/" />
 
 <meta
   name="description"
   content="
   
-    tired high school student
+    All blog posts can be found here
   
   "
 />
@@ -107,7 +110,7 @@
 <meta name="view-transition" content="same-origin" />
 
 <!-- Helps prevent duplicate content issues -->
-<link rel="canonical" href="http://localhost:8080/about/" />
+<link rel="canonical" href="http://localhost:8080/blog/" />
 
 <!-- Links to information about the author(s) of the document -->
 <link rel="author" href="humans.txt" />
@@ -115,11 +118,11 @@
 
 
 <!-- Open Graph meta  -->
-<meta property="og:url" content="http://localhost:8080/about/" />
+<meta property="og:url" content="http://localhost:8080/blog/" />
 <meta property="og:type" content="website" />
 <meta
   property="og:title"
-  content="About"
+  content="Blog"
 />
 <meta
   property="og:image"
@@ -135,7 +138,7 @@
 />
 <meta
   property="og:description"
-  content="tired high school student"
+  content="All blog posts can be found here"
 />
 <meta property="og:site_name" content="Daniel Xu" />
 <meta property="og:locale" content="en_EN" />
@@ -161,7 +164,7 @@
 
   </head>
 
-  <body class="page">
+  <body class="blog">
     <a href="#main" class="skip-link">Skip to content</a>
 
 <header class="wrapper">
@@ -204,7 +207,7 @@
         <a
           class="nav"
           href="/about/"
-           aria-current="page"data-state="active"
+          
           >About</a
         >
       </li>
@@ -231,7 +234,7 @@
         <a
           class="nav"
           href="/blog/"
-          
+           aria-current="page"data-state="active"
           >Blog</a
         >
       </li>
@@ -246,35 +249,78 @@
 
 
     <main id="main" class="flow">
-<article
-  class="region wrapper flow prose"
-  style="--region-space-top: var(--space-xl-2xl)"
+<article class="wrapper">
+  <header class="full | section" style="--spot-color: var(--color-secondary)">
+    <div
+      class="section__inner flow region"
+      style="--region-space-top: var(--space-xl-2xl)"
+    >
+      <h1 class="text-center text-base-light">Blog</h1>
+    </div>
+    <svg
+  class="seperator"
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1440 320"
 >
-  <h1 class="gradient-text">About</h1>
-  <p>Hi! I’m Daniel, a high school student in San Francisco, California.</p>
-<p>In the future, I’m looking to pursue a degree in computer science or engineering.</p>
-<h2 id="hobbies"><a class="heading-anchor" href="#hobbies">Hobbies</a></h2>
-<p>In my free time, I like to mess around with code, listen to music, ride around on my bike, make music, and read. I also dabble in photography and writing.</p>
-<p>I also maintain several packages in the <a href="https://github.com/nixos/nixpkgs" rel="noopener">Nixpkgs</a> repo, and maintain my own package repository at <a href="https://github.com/x0ba/nur" rel="noopener">github:x0ba/nur</a>.</p>
-<h2 id="experience"><a class="heading-anchor" href="#experience">Experience</a></h2>
-<p>I’m familiar with the following programming languages</p>
-<ul class="list">
-<li>Java</li>
-<li>Python</li>
-<li>Kotlin</li>
-<li>Lua</li>
-<li>TypeScript/JavaScript</li>
-<li>Nix</li>
-</ul>
-<p>And the following tooling</p>
-<ul class="list">
-<li>Kubernetes</li>
-<li>Docker</li>
-<li>Nix Flakes</li>
-</ul>
-<h2 id="colophon"><a class="heading-anchor" href="#colophon">Colophon</a></h2>
-<p>This site is built using Eleventy and hosted on Netlify. It was made based on the <a href="https://github.com/madrilene/eleventy-excellent" rel="noopener">Eleventy Excellent</a> starter.</p>
+  <path
+    d="M0,320L48,32L96,32L144,224L192,256L240,0L288,192L336,288L384,224L432,128L480,256L528,32L576,96L624,64L672,64L720,160L768,32L816,192L864,128L912,128L960,32L1008,224L1056,160L1104,0L1152,64L1200,256L1248,64L1296,224L1344,160L1392,96L1440,32L1440,0L1392,0L1344,0L1296,0L1248,0L1200,0L1152,0L1104,0L1056,0L1008,0L960,0L912,0L864,0L816,0L768,0L720,0L672,0L624,0L576,0L528,0L480,0L432,0L384,0L336,0L288,0L240,0L192,0L144,0L96,0L48,0L0,0Z"
+  ></path>
+</svg>
 
+  </header>
+
+  <div class="region flow prose" style="--region-space-top: var(--space-xl-2xl)">
+    <p style="text-align: center;">
+I yap here. Hopefully you find the yapping helpful.
+Subscribe to get new posts via <a href="/feed.xml">RSS</a>.
+</p>
+
+  </div>
+
+  <ul class="blogcards | grid" role="list" data-rows="masonry" data-layout="50-50">
+    <!-- loop posts -->
+    
+    
+      <!-- activate tags -->
+      
+      <!-- set date context -->
+      
+      <!-- set heading context -->
+      
+      <!-- include card -->
+      <li class="card">
+  <div class="flow">
+    
+      <h2>
+        <a href="/blog/some-dotfile-updates/">Some dotfile updates</a>
+      </h2>
+    
+    <div class="cluster">
+      <span class="text-step-min-1">
+        
+        <time datetime="2023-02-27T00:00:00.000Z">
+  February 27, 2023
+</time>
+
+        
+          <span class="button post-tag"> nix </span>
+        
+      </span>
+    </div>
+    <p>A few updates and changes to my Nix dotfiles.</p>
+  </div>
+</li>
+
+    
+  </ul>
+
+  <!-- set collection to paginate -->
+  
+  <!-- set target pagination settings in meta.js -->
+  
+  <!-- if the number of items in the collection is greater than the number of items shown on one page -->
+  
 </article>
 </main>
 

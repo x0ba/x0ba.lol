@@ -1,0 +1,551 @@
+
+
+<!doctype html>
+<html lang="en">
+  <!-- The order of elements in the head follows recommendations by Harry Roberts. learn more here: https://www.youtube.com/watch?v=MHyAOZ45vnU -->
+
+  <head>
+    <!-- charset/http-equiv/viewport -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- title -->
+    <title>
+      
+        Some dotfile updates
+      
+    </title>
+
+    <!-- 4 synchronous js  -->
+    <!-- load theme toggle first to avoid color flashing on page load and inline render blocking js  -->
+    
+
+    <script>
+      // prettier-ignore
+      (()=>{var r="theme-preference",c="light",u="dark",t={value:n()};window.onload=()=>{let e=document.querySelector("#light-theme-toggle"),o=document.querySelector("#dark-theme-toggle"),d=document.querySelector("[data-theme-switcher]");d&&(d.removeAttribute("hidden"),a(),e.addEventListener("click",()=>l("light")),o.addEventListener("click",()=>l("dark")),e.setAttribute("aria-pressed",t.value==="light"),o.setAttribute("aria-pressed",t.value==="dark"))},window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t.value=e?"dark":"light",i()});function l(e){t.value=e,document.querySelector("#light-theme-toggle").setAttribute("aria-pressed",e==="light"),document.querySelector("#dark-theme-toggle").setAttribute("aria-pressed",e==="dark"),i()}function n(){return localStorage.getItem(r)?localStorage.getItem(r):window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function i(){localStorage.setItem(r,t.value),a()}function a(){document.firstElementChild.setAttribute("data-theme",t.value),document.querySelector("#light-theme-toggle")?.setAttribute("aria-label",c),document.querySelector("#dark-theme-toggle")?.setAttribute("aria-label",u)}a()})();
+
+    </script>
+
+    <!--  inline base schema -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "http://localhost:8080#website",
+        "url": "http://localhost:8080",
+        "name": "Daniel Xu",
+        "description": "tired high school student",
+        "inLanguage": "en_EN"
+      }
+    ]
+  }
+</script>
+
+
+    <!--  inline blogpost schema  -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage"
+    },
+    "isPartOf": {
+      "@id": "http://localhost:8080#website"
+    },
+    "@id": "",
+    "headline": "Some dotfile updates",
+    "description": "A few updates and changes to my Nix dotfiles.",
+    "image": "http://localhost:8080/assets/images/template/opengraph-default.jpg",
+    "inLanguage": "en_EN",
+    "publisher": {
+      "@type": "Person",
+      "name": "Daniel Xu",
+      "url": "http://localhost:8080"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Xu"
+    },
+    "datePublished": "2023-02-27T00:00:00.000Z"
+  }
+</script>
+
+
+    <link rel="stylesheet" href="/assets/css/global.css?f0d2-9c1a-5963" />
+
+    <!-- preloads -->
+    <link
+      rel="preload"
+      href="/assets/fonts/figtree/figtree-variable[wght].woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link
+      rel="preload"
+      href="/assets/fonts/redhat/red-hat-display-v7-latin-900.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- preloads in page data -->
+
+    <!-- defered js  -->
+
+    
+
+    
+
+    
+
+    
+      <!-- easteregg js, if true in meta -->
+      <script src="/assets/scripts/easteregg.js?f0d2-9c1a-5963" defer></script>
+    
+
+    <!-- everything else: meta tags, icons, open graph etc.  -->
+    <base href="/blog/some-dotfile-updates/" />
+
+<meta
+  name="description"
+  content="
+  
+    A few updates and changes to my Nix dotfiles.
+  
+  "
+/>
+
+<meta name="theme-color" content="#DD4462" />
+<!-- Search Engines -->
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+<!-- Made with Eleventy! -->
+<meta name="generator" content="Eleventy v2.0.1" />
+<!-- Disable automatic detection and formatting of possible phone numbers -->
+<meta name="format-detection" content="telephone=no" />
+<!-- supports both dark and light color schemes, page author prefers light as default. -->
+<meta name="color-scheme" content="light dark" />
+<!-- activates page transitions -->
+<meta name="view-transition" content="same-origin" />
+
+<!-- Helps prevent duplicate content issues -->
+<link rel="canonical" href="http://localhost:8080/blog/some-dotfile-updates/" />
+
+<!-- Links to information about the author(s) of the document -->
+<link rel="author" href="humans.txt" />
+
+
+
+<!-- Open Graph meta  -->
+<meta property="og:url" content="http://localhost:8080/blog/some-dotfile-updates/" />
+<meta property="og:type" content="website" />
+<meta
+  property="og:title"
+  content="Some dotfile updates"
+/>
+<meta
+  property="og:image"
+  content="http://localhost:8080
+    /assets/og-images/some-dotfile-updates-preview.jpeg
+  "
+/>
+<meta
+  property="og:image:alt"
+  content="
+
+  "
+/>
+<meta
+  property="og:description"
+  content="A few updates and changes to my Nix dotfiles."
+/>
+<meta property="og:site_name" content="Daniel Xu" />
+<meta property="og:locale" content="en_EN" />
+<meta property="article:author" content="Daniel Xu" />
+
+<!-- Twitter specific head data was removed in v2 -->
+
+<!-- RSS Autodiscovery. Loops over meta.blog.feedLinks -->
+
+  <link
+    rel="alternate"
+    type="application/atom+xml"
+    title="Atom Feed: Daniel Xu"
+    href="/feed.xml"
+  />
+
+
+<!-- Favicon: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  </head>
+
+  <body class="post">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+<header class="wrapper">
+  <div class="repel ontop">
+    <a
+      href="/"
+      class="logo | cluster"
+      
+    >
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="1em"
+  height="1em"
+  fill="currentColor"
+	aria-hidden="true"
+	focusable="false"
+>
+  <path
+    fill-rule="evenodd"
+    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+      <span>Daniel Xu</span>
+    </a>
+    
+
+
+
+<nav
+  id="mainnav"
+  class=" site-nav"
+  aria-label="Main"
+>
+  <ul class="cluster" role="list">
+    
+      <li>
+        <a
+          class="nav"
+          href="/about/"
+          
+          >About</a
+        >
+      </li>
+    
+      <li>
+        <a
+          class="nav"
+          href="/uses/"
+          
+          >Uses</a
+        >
+      </li>
+    
+      <li>
+        <a
+          class="nav"
+          href="/links/"
+          
+          >Links</a
+        >
+      </li>
+    
+      <li>
+        <a
+          class="nav"
+          href="/blog/"
+          data-state="active"
+          >Blog</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+
+
+
+  </div>
+</header>
+
+
+    <main id="main" class="flow">
+<article class="region blog" style="--region-space-top: var(--space-xl-2xl)">
+  <div class="wrapper flow prose">
+    <h1 class="gradient-text">Some dotfile updates</h1>
+
+    
+    
+
+    <p class="meta | cluster" style="--gutter: var(--space-xs-s)">
+      <!-- date -->
+       <time datetime="2023-02-27T00:00:00.000Z">
+  February 27, 2023
+</time>
+
+      
+        <!-- tags -->
+        
+          <a class="button post-tag" href="/tags/nix"> nix </a>
+        
+      
+    </p>
+
+    <p>I use Nix to manage the user environment for all my machines, and I’m constantly finding new ways to use it. Here are some updates to my <a href="https://github.com/x0ba/dotfiles" rel="noopener">Nix dotfiles</a> that I’ve made over the past month.</p>
+<h2 id="sops-nix-to-agenix"><a class="heading-anchor" href="#sops-nix-to-agenix">Sops-Nix to Agenix</a></h2>
+<p>I’ve been using Sops-Nix for a long time to manage secrets in my dotfiles. There were a number of problems with this. For one, I store my personal PGP key, which is used to encrypt and decrypt the sops secrets, on a Yubikey 5C. A weird side-effect (feature?) of sops-nix is that the secrets are <em>continually</em> decrypted by a daemon. As soon as I unplugged my Yubikey, the secrets disappeared. I didn’t want my Yubikey to be held hostage by my MacBook’s USB port, so I decided to switch to Agenix. With Agenix, the secrets are decrypted once on rebuild, and they stay in my home folder. This also has another advantage; I don’t need to physically plug in my Yubikey to <em>decrypt</em> secrets, only to <em>encrypt</em> them with <a href="https://github.com/str4d/age-plugin-yubikey" rel="noopener"><code>age-plugin-yubikey</code></a>. This is especially helpful with servers, where I can just use the machine’s <code>ssh</code> key to decrypt the age-encrypted secrets.</p>
+<h2 id="nvfetcher-to-fetch-non-flake-sources"><a class="heading-anchor" href="#nvfetcher-to-fetch-non-flake-sources">Nvfetcher to fetch non-flake sources</a></h2>
+<p>For things like <code>zsh</code> plugins that are not in <code>nixpkgs</code>, <a href="https://github.com/koekeishiya/yabai" rel="noopener"><code>yabai</code></a> releases not yet updated in <code>nixpkgs</code>, and <a href="https://wezfurlong.org/wezterm/index.html" rel="noopener"><code>wezterm</code></a> plugins, I’ve been using Nix functions like <code>fetchZip</code> and <code>fetchFromGitHub</code> to fetch them using Nix. This was clunky and unintuitive, and it was tedious to go through and update URLs and SHAs whenever a new update to these sources was released. Nvfetcher makes this a lot easier. I can simply define sources in a <code>toml</code> file like so:</p>
+<pre class="language-toml"><code class="language-toml"><span class="token punctuation">[</span><span class="token table class-name">yabai</span><span class="token punctuation">]</span>
+<span class="token key property">src.github</span> <span class="token punctuation">=</span> <span class="token string">"koekeishiya/yabai"</span>
+<span class="token key property">fetch.url</span> <span class="token punctuation">=</span> <span class="token string">"https://github.com/koekeishiya/yabai/releases/download/$ver/yabai-$ver.tar.gz"</span>
+</code></pre>
+<p>and have Nvfetcher automatically generate a Nix expression to fetch it, complete with <code>url</code> and <code>sha</code>, that I can then reference in my Nix configurations:</p>
+<pre class="language-nix"><code class="language-nix">  yabai <span class="token operator">=</span> <span class="token punctuation">{</span>
+    pname <span class="token operator">=</span> <span class="token string">"yabai"</span><span class="token punctuation">;</span>
+    version <span class="token operator">=</span> <span class="token string">"v6.0.15"</span><span class="token punctuation">;</span>
+    src <span class="token operator">=</span> <span class="token function">fetchurl</span> <span class="token punctuation">{</span>
+      url <span class="token operator">=</span> <span class="token string">"https://github.com/koekeishiya/yabai/releases/download/v6.0.15/yabai-v6.0.15.tar.gz"</span><span class="token punctuation">;</span>
+      sha256 <span class="token operator">=</span> <span class="token string">"sha256-8+jAdwF7Yganvv1NsbtMIBWv0rh9JmHuwLWmwiFmDu4="</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Very handy.</p>
+<h2 id="configurations-for-light-dark-mode-sync"><a class="heading-anchor" href="#configurations-for-light-dark-mode-sync">Configurations for light-dark mode sync</a></h2>
+<p>Before this Nix madness, I used to configure my machines to automatically switch between dark and light mode based on the time of day. I still firmly believe that’s a good thing to do; nobody wants to read light text on a dark screen when sunlight is shining through the window. However, some tiny problems, such as discrepancies in <code>zsh-syntax-highlighting</code> themes, <code>bat</code> themes and <code>starship</code> themes kept me from doing so. Themes that were made for light mode were being applied in dark mode, and vice versa. They looked bad.</p>
+<figure class="flow"><picture><source type="image/avif" srcset="/assets/images/eww-202w.avif 202w" sizes="90vw"><source type="image/webp" srcset="/assets/images/eww-202w.webp 202w" sizes="90vw"><source type="image/jpeg" srcset="/assets/images/eww-202w.jpeg 202w" sizes="90vw"><img src="/assets/images/eww-202w.jpeg" width="202" height="142" alt="An example of text-background mismatch" loading="lazy" decoding="async"></picture><figcaption>An example of text-background mismatch</figcaption></figure>
+<p>I fixed this with a little Nix code that I half borrowed half wrote. It performs a check that returns whether the system is in light mode or dark mode, and adds a startup hook to my shell that changes the <code>starship</code> and <code>bat</code> colorschemes accordingly<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. It looks something like this:</p>
+<pre class="language-nix"><code class="language-nix"><span class="token punctuation">{</span>
+  config<span class="token punctuation">,</span>
+  lib<span class="token punctuation">,</span>
+  pkgs<span class="token punctuation">,</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token keyword">let</span>
+  <span class="token keyword">inherit</span> <span class="token punctuation">(</span>pkgs<span class="token punctuation">.</span>stdenv<span class="token punctuation">)</span> isDarwin isLinux<span class="token punctuation">;</span>
+<span class="token keyword">in</span> <span class="token punctuation">{</span>
+  config <span class="token operator">=</span> lib<span class="token punctuation">.</span>mkIf config<span class="token punctuation">.</span>isGraphical <span class="token punctuation">{</span>
+    home<span class="token punctuation">.</span>packages <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">(</span>pkgs<span class="token punctuation">.</span>writeShellApplication <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> <span class="token string">"dark-mode-ternary"</span><span class="token punctuation">;</span>
+        runtimeInputs <span class="token operator">=</span> <span class="token punctuation">[</span>pkgs<span class="token punctuation">.</span>gnugrep<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        text <span class="token operator">=</span> <span class="token keyword">let</span>
+          queryCommand <span class="token operator">=</span>
+            <span class="token keyword">if</span> isLinux
+            <span class="token keyword">then</span> <span class="token string">"dbus-send --session --print-reply=literal --reply-timeout=5 --dest=org.freedesktop.portal.Desktop /org/freedesktop/portal/desktop org.freedesktop.portal.Settings.Read string:'org.freedesktop.appearance' string:'color-scheme' | grep -q 'uint32 1'"</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> isDarwin
+            <span class="token keyword">then</span> <span class="token string">"defaults read -g AppleInterfaceStyle &amp;>/dev/null"</span>
+            <span class="token keyword">else</span> <span class="token function">throw</span> <span class="token string">"Unsupported platform"</span><span class="token punctuation">;</span>
+        <span class="token keyword">in</span> <span class="token string">''
+          [[ -z "''${1-}" ]] &amp;&amp; [[ -z "''${2-}" ]] &amp;&amp; echo "Usage: $0 &lt;dark> &lt;light>" &amp;&amp; exit 1
+
+          if <span class="token interpolation"><span class="token antiquotation important">$</span><span class="token punctuation">{</span>queryCommand<span class="token punctuation">}</span></span>; then
+            echo "$1"
+          else
+            echo "$2"
+          fi
+        ''</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    programs<span class="token punctuation">.</span>zsh <span class="token operator">=</span> <span class="token punctuation">{</span>
+      shellAliases<span class="token punctuation">.</span>cat <span class="token operator">=</span> <span class="token string">"bat --theme=$(dark-mode-ternary 'Catppuccin-frappe' 'Catppuccin-latte')"</span><span class="token punctuation">;</span>
+      initExtra <span class="token operator">=</span> <span class="token string">''
+        zadm_sync() {
+          export STARSHIP_CONFIG__PALETTE="catppuccin_$(dark-mode-ternary frappe latte)"
+          fast-theme "XDG:catppuccin-$(dark-mode-ternary frappe latte)" >/dev/null
+        }
+        add-zsh-hook precmd zadm_sync
+      ''</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>If you’d like to see more, feel free to browse (and steal from) my full dotfiles repo <a href="https://github.com/x0ba/dotfiles" rel="noopener">here</a>.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Note: this code only works for Starship if <a href="https://patch-diff.githubusercontent.com/raw/starship/starship/pull/4439.patch" rel="noopener">this</a> patch is applied to Starship <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    
+  <hr />
+  <p class="text-step-min-1">
+    
+    <a
+      href="https://github.com/madrilene/eleventy-excellent/tree/main/./src/posts/2023/2023-02-27-some-dotfile-updates/index.md"
+      >View this page on GitHub</a
+    >.
+  </p>
+
+
+  </div>
+
+  <!--  h-card infos: https://indieweb.org/authorship -->
+  <div hidden class="h-entry">
+    <a class="u-url" href="http://localhost:8080/blog/some-dotfile-updates/">Some dotfile updates</a>
+    <a class="p-name u-url" rel="author" href="http://localhost:8080">Daniel Xu</a>
+    <img
+      class="u-author h-card"
+      src="http://localhost:8080/favicon.png"
+      alt="Daniel Xu"
+    />
+  </div>
+</article>
+</main>
+
+    <footer class="site-foot">
+  <div class="wrapper">
+    <div class="site-foot__inner">
+      <nav
+        class="site-foot__inner text-step-0"
+        aria-label="Complementary"
+      >
+        &copy; 2024
+        <a href="/" 
+          >Daniel Xu <small>2.2.0</small>
+        </a>
+
+        
+          <a
+            href="/imprint/"
+            
+            >Imprint</a
+          >
+        
+          <a
+            href="/privacy/"
+            
+            >Privacy</a
+          >
+        
+      </nav>
+
+      <nav class="site-foot__inner" aria-label="Platforms">
+        <!-- gets the first item from the feed loop set in meta -->
+        <a
+          href="/feed.xml"
+          rel="alternate"
+          type="application/atom+xml"
+        >
+          <span class="visually-hidden">Atom Feed</span>
+          <div aria-hidden="true"><svg
+  role="img"
+  viewBox="0 0 24 24"
+  width="1em"
+  height="1em"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>RSS</title>
+  <path d="M4 11a9 9 0 0 1 9 9"></path>
+  <path d="M4 4a16 16 0 0 1 16 16"></path>
+  <circle cx="5" cy="19" r="1"></circle>
+</svg>
+</div>
+        </a>
+
+        
+          
+            <!-- regular platforms -->
+            <a href="https://github.com/x0ba" rel="me">
+              <span class="visually-hidden">Github</span>
+              <div aria-hidden="true"><svg
+  role="img"
+  viewBox="0 0 24 24"
+  width="1em"
+  height="1em"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>GitHub</title>
+  <path
+    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+  ></path>
+  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+</svg>
+</div>
+            </a>
+          
+        
+          
+            <!-- regular platforms -->
+            <a href="https://social.lol/@dax" rel="me">
+              <span class="visually-hidden">Mastodon</span>
+              <div aria-hidden="true"><svg
+  role="img"
+  viewBox="0 0 24 24"
+  width="1em"
+  height="1em"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>Mastodon</title>
+  <path
+    d="M21.887,5.996C21.579,3.682 19.589,1.856 17.232,1.504C16.833,1.445 15.326,1.226 11.834,1.226L11.808,1.226C8.313,1.226 7.565,1.445 7.166,1.504C4.871,1.849 2.779,3.486 2.269,5.83C2.027,6.983 2.001,8.263 2.047,9.436C2.112,11.12 2.125,12.797 2.275,14.475C2.38,15.588 2.56,16.692 2.818,17.779C3.302,19.788 5.257,21.459 7.173,22.138C9.222,22.848 11.429,22.967 13.541,22.48C13.773,22.423 14.002,22.36 14.231,22.287C14.744,22.122 15.345,21.936 15.79,21.611C15.796,21.608 15.8,21.601 15.803,21.595C15.806,21.588 15.81,21.581 15.81,21.571L15.81,19.947C15.81,19.947 15.81,19.934 15.803,19.927C15.803,19.921 15.796,19.914 15.79,19.911C15.783,19.907 15.777,19.904 15.77,19.901L15.751,19.901C14.397,20.229 13.008,20.395 11.619,20.391C9.222,20.391 8.578,19.238 8.395,18.761C8.248,18.346 8.153,17.912 8.114,17.474C8.114,17.468 8.114,17.461 8.117,17.455C8.117,17.448 8.124,17.441 8.13,17.438C8.137,17.435 8.143,17.431 8.15,17.428L8.173,17.428C9.503,17.753 10.87,17.919 12.24,17.919C12.57,17.919 12.897,17.919 13.227,17.909C14.603,17.869 16.055,17.799 17.411,17.531C17.444,17.524 17.48,17.518 17.509,17.511C19.647,17.093 21.681,15.787 21.887,12.479C21.893,12.35 21.913,11.114 21.913,10.981C21.913,10.52 22.06,7.723 21.89,6.002L21.887,5.996Z"
+  ></path>
+  <path
+    d="M6.061,7.288C6.061,6.612 6.594,6.069 7.254,6.069C7.915,6.069 8.447,6.616 8.447,7.288C8.447,7.961 7.915,8.508 7.254,8.508C6.594,8.508 6.061,7.961 6.061,7.288Z"
+    stroke-width="1"
+    fill="currentColor"
+  ></path>
+</svg>
+</div>
+            </a>
+          
+        
+      </nav>
+    </div>
+
+    <!-- theme switch -->
+    <div
+  role="region"
+  class="theme-switch | cluster mt-xs"
+  style="--cluster-horizontal-alignment: center; --gutter: 0.5rem"
+  aria-labelledby="theme-switcher-label"
+  data-theme-switcher
+  hidden
+>
+  <h2 id="theme-switcher-label">Theme</h2>
+  <button class="button" id="light-theme-toggle" data-theme="light">
+    <span>light</span>
+  </button>
+  <button class="button" id="dark-theme-toggle" data-theme="dark">
+    <span>dark</span>
+  </button>
+</div>
+
+
+    <div class="text-center mt-m-l">
+      <a class="creator text-step-min-1" href="https://x0ba.lol"
+        >Made with <span><svg
+  width="1em"
+  height="1em"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path
+    d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z"
+  />
+</svg>
+</span> by
+        Daniel Xu</a
+      >
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

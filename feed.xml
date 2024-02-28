@@ -5,10 +5,96 @@
   <link href="http://localhost:8080/feed.xml" rel="self" />
   <link href="http://localhost:8080/" />
   
-  <updated>2024-02-28T04:42:23Z</updated>
+  <updated>2023-02-27T00:00:00Z</updated>
   <id>http://localhost:8080/</id>
   <author>
     <name>Daniel Xu</name>
     <email>x0ba@tuta.io</email>
   </author>
+  <entry>
+    <title>Some dotfile updates</title>
+    <link href="http://localhost:8080/blog/some-dotfile-updates/" />
+    <updated>2023-02-27T00:00:00Z</updated>
+    <id>http://localhost:8080/blog/some-dotfile-updates/</id>
+    <content
+      xml:lang=""
+      type="html"
+      >&lt;p&gt;I use Nix to manage the user environment for all my machines, and I’m constantly finding new ways to use it. Here are some updates to my &lt;a href=&quot;https://github.com/x0ba/dotfiles&quot; rel=&quot;noopener&quot;&gt;Nix dotfiles&lt;/a&gt; that I’ve made over the past month.&lt;/p&gt;
+&lt;h2 id=&quot;sops-nix-to-agenix&quot;&gt;&lt;a class=&quot;heading-anchor&quot; href=&quot;http://localhost:8080/blog/some-dotfile-updates/#sops-nix-to-agenix&quot;&gt;Sops-Nix to Agenix&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I’ve been using Sops-Nix for a long time to manage secrets in my dotfiles. There were a number of problems with this. For one, I store my personal PGP key, which is used to encrypt and decrypt the sops secrets, on a Yubikey 5C. A weird side-effect (feature?) of sops-nix is that the secrets are &lt;em&gt;continually&lt;/em&gt; decrypted by a daemon. As soon as I unplugged my Yubikey, the secrets disappeared. I didn’t want my Yubikey to be held hostage by my MacBook’s USB port, so I decided to switch to Agenix. With Agenix, the secrets are decrypted once on rebuild, and they stay in my home folder. This also has another advantage; I don’t need to physically plug in my Yubikey to &lt;em&gt;decrypt&lt;/em&gt; secrets, only to &lt;em&gt;encrypt&lt;/em&gt; them with &lt;a href=&quot;https://github.com/str4d/age-plugin-yubikey&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;age-plugin-yubikey&lt;/code&gt;&lt;/a&gt;. This is especially helpful with servers, where I can just use the machine’s &lt;code&gt;ssh&lt;/code&gt; key to decrypt the age-encrypted secrets.&lt;/p&gt;
+&lt;h2 id=&quot;nvfetcher-to-fetch-non-flake-sources&quot;&gt;&lt;a class=&quot;heading-anchor&quot; href=&quot;http://localhost:8080/blog/some-dotfile-updates/#nvfetcher-to-fetch-non-flake-sources&quot;&gt;Nvfetcher to fetch non-flake sources&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For things like &lt;code&gt;zsh&lt;/code&gt; plugins that are not in &lt;code&gt;nixpkgs&lt;/code&gt;, &lt;a href=&quot;https://github.com/koekeishiya/yabai&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;yabai&lt;/code&gt;&lt;/a&gt; releases not yet updated in &lt;code&gt;nixpkgs&lt;/code&gt;, and &lt;a href=&quot;https://wezfurlong.org/wezterm/index.html&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;wezterm&lt;/code&gt;&lt;/a&gt; plugins, I’ve been using Nix functions like &lt;code&gt;fetchZip&lt;/code&gt; and &lt;code&gt;fetchFromGitHub&lt;/code&gt; to fetch them using Nix. This was clunky and unintuitive, and it was tedious to go through and update URLs and SHAs whenever a new update to these sources was released. Nvfetcher makes this a lot easier. I can simply define sources in a &lt;code&gt;toml&lt;/code&gt; file like so:&lt;/p&gt;
+&lt;pre class=&quot;language-toml&quot;&gt;&lt;code class=&quot;language-toml&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token table class-name&quot;&gt;yabai&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token key property&quot;&gt;src.github&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;koekeishiya/yabai&quot;&lt;/span&gt;
+&lt;span class=&quot;token key property&quot;&gt;fetch.url&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://github.com/koekeishiya/yabai/releases/download/$ver/yabai-$ver.tar.gz&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and have Nvfetcher automatically generate a Nix expression to fetch it, complete with &lt;code&gt;url&lt;/code&gt; and &lt;code&gt;sha&lt;/code&gt;, that I can then reference in my Nix configurations:&lt;/p&gt;
+&lt;pre class=&quot;language-nix&quot;&gt;&lt;code class=&quot;language-nix&quot;&gt;  yabai &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    pname &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;yabai&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    version &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;v6.0.15&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    src &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fetchurl&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      url &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://github.com/koekeishiya/yabai/releases/download/v6.0.15/yabai-v6.0.15.tar.gz&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      sha256 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;sha256-8+jAdwF7Yganvv1NsbtMIBWv0rh9JmHuwLWmwiFmDu4=&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Very handy.&lt;/p&gt;
+&lt;h2 id=&quot;configurations-for-light-dark-mode-sync&quot;&gt;&lt;a class=&quot;heading-anchor&quot; href=&quot;http://localhost:8080/blog/some-dotfile-updates/#configurations-for-light-dark-mode-sync&quot;&gt;Configurations for light-dark mode sync&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before this Nix madness, I used to configure my machines to automatically switch between dark and light mode based on the time of day. I still firmly believe that’s a good thing to do; nobody wants to read light text on a dark screen when sunlight is shining through the window. However, some tiny problems, such as discrepancies in &lt;code&gt;zsh-syntax-highlighting&lt;/code&gt; themes, &lt;code&gt;bat&lt;/code&gt; themes and &lt;code&gt;starship&lt;/code&gt; themes kept me from doing so. Themes that were made for light mode were being applied in dark mode, and vice versa. They looked bad.&lt;/p&gt;
+&lt;figure class=&quot;flow&quot;&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;http://localhost:8080/assets/images/eww-202w.avif 202w&quot; sizes=&quot;90vw&quot; /&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;http://localhost:8080/assets/images/eww-202w.webp 202w&quot; sizes=&quot;90vw&quot; /&gt;&lt;source type=&quot;image/jpeg&quot; srcset=&quot;http://localhost:8080/assets/images/eww-202w.jpeg 202w&quot; sizes=&quot;90vw&quot; /&gt;&lt;img src=&quot;http://localhost:8080/assets/images/eww-202w.jpeg&quot; width=&quot;202&quot; height=&quot;142&quot; alt=&quot;An example of text-background mismatch&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; /&gt;&lt;/picture&gt;&lt;figcaption&gt;An example of text-background mismatch&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;I fixed this with a little Nix code that I half borrowed half wrote. It performs a check that returns whether the system is in light mode or dark mode, and adds a startup hook to my shell that changes the &lt;code&gt;starship&lt;/code&gt; and &lt;code&gt;bat&lt;/code&gt; colorschemes accordingly&lt;sup class=&quot;footnote-ref&quot;&gt;&lt;a href=&quot;http://localhost:8080/blog/some-dotfile-updates/#fn1&quot; id=&quot;fnref1&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;. It looks something like this:&lt;/p&gt;
+&lt;pre class=&quot;language-nix&quot;&gt;&lt;code class=&quot;language-nix&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  config&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  lib&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  pkgs&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;inherit&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pkgs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;stdenv&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; isDarwin isLinux&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  config &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; lib&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;mkIf config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;isGraphical &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    home&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;packages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pkgs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;writeShellApplication &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;dark-mode-ternary&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        runtimeInputs &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;pkgs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;gnugrep&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        text &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt;
+          queryCommand &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; isLinux
+            &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;dbus-send --session --print-reply=literal --reply-timeout=5 --dest=org.freedesktop.portal.Desktop /org/freedesktop/portal/desktop org.freedesktop.portal.Settings.Read string:&#39;org.freedesktop.appearance&#39; string:&#39;color-scheme&#39; | grep -q &#39;uint32 1&#39;&quot;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; isDarwin
+            &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;defaults read -g AppleInterfaceStyle &amp;amp;&gt;/dev/null&quot;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Unsupported platform&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;
+          [[ -z &quot;&#39;&#39;${1-}&quot; ]] &amp;amp;&amp;amp; [[ -z &quot;&#39;&#39;${2-}&quot; ]] &amp;amp;&amp;amp; echo &quot;Usage: $0 &amp;lt;dark&gt; &amp;lt;light&gt;&quot; &amp;amp;&amp;amp; exit 1
+
+          if &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token antiquotation important&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;queryCommand&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;; then
+            echo &quot;$1&quot;
+          else
+            echo &quot;$2&quot;
+          fi
+        &#39;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    programs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;zsh &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      shellAliases&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cat &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;bat --theme=$(dark-mode-ternary &#39;Catppuccin-frappe&#39; &#39;Catppuccin-latte&#39;)&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      initExtra &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;
+        zadm_sync() {
+          export STARSHIP_CONFIG__PALETTE=&quot;catppuccin_$(dark-mode-ternary frappe latte)&quot;
+          fast-theme &quot;XDG:catppuccin-$(dark-mode-ternary frappe latte)&quot; &gt;/dev/null
+        }
+        add-zsh-hook precmd zadm_sync
+      &#39;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you’d like to see more, feel free to browse (and steal from) my full dotfiles repo &lt;a href=&quot;https://github.com/x0ba/dotfiles&quot; rel=&quot;noopener&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;hr class=&quot;footnotes-sep&quot; /&gt;
+&lt;section class=&quot;footnotes&quot;&gt;
+&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn1&quot; class=&quot;footnote-item&quot;&gt;&lt;p&gt;Note: this code only works for Starship if &lt;a href=&quot;https://patch-diff.githubusercontent.com/raw/starship/starship/pull/4439.patch&quot; rel=&quot;noopener&quot;&gt;this&lt;/a&gt; patch is applied to Starship &lt;a href=&quot;http://localhost:8080/blog/some-dotfile-updates/#fnref1&quot; class=&quot;footnote-backref&quot;&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</content
+    >
+  </entry>
 </feed>
