@@ -7,7 +7,7 @@ article
 
 article
   [href^='http']:not([href*='localhost:8080']):not(
-    [href*='eleventy-excellent.netlify.app']
+    [href*='x0ba.lol']
   ):not(.no-indicator)::after {
   position: absolute;
   display: inline-block;

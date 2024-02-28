@@ -33,4 +33,4 @@ And the following tooling
 
 ## Colophon
 
-This site is built using Eleventy and hosted on Netlify. It was made based on the [Eleventy Excellent](https://github.com/madrilene/eleventy-excellent) starter.
+This site is built using Eleventy and hosted on Netlify. It was made based on the (excellent) [Eleventy Excellent](https://github.com/madrilene/eleventy-excellent) starter.

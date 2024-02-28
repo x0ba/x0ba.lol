@@ -17,7 +17,7 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/madrilene/eleventy-excellent.git"
+    "url": "https://github.com/x0ba/x0ba.lol.git"
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
