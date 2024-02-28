@@ -1,7 +1,7 @@
 ---
 permalink: /index.html
 title: "Hi! I'm Daniel."
-description: 'Eternally tired high school student. Open source developer'
+description: 'Eternally tired high school student.'
 layout: 'home'
 blog:
   title: 'Latest Blog Posts'
